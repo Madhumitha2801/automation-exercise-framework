@@ -1,0 +1,25 @@
+<suite name="Automation Exercise Regression Suite"
+       verbose="2"
+       parallel="false">
+
+    <test name="E-commerce Regression Tests">
+
+        <classes>
+
+            <class name="com.automationexercise.tests.HomePageTest"/>
+
+            <class name="com.automationexercise.tests.ProductsPageTest"/>
+
+            <class name="com.automationexercise.tests.SearchProductTest"/>
+
+            <class name="com.automationexercise.tests.CartTest"/>
+
+            <class name="com.automationexercise.tests.LoginTest"/>
+
+            <class name="com.automationexercise.tests.SignupTest"/>
+
+        </classes>
+
+    </test>
+
+</suite>
