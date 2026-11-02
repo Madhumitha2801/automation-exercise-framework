@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import io.qameta.allure.Allure;
 
@@ -31,13 +32,51 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
 
-        driver = new ChromeDriver();
+        // Read browser from config.properties
+        String browser = ConfigReader.getProperty("browser");
+
+        if (browser.equalsIgnoreCase("chrome")) {
+            driver = new ChromeDriver();
+        } else {
+            throw new RuntimeException("Unsupported browser: " + browser);
+        }
 
         driver.manage().window().maximize();
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
+        // Read wait time from config.properties
+        int waitTime = Integer.parseInt(
+                ConfigReader.getProperty("explicit.wait")
+        );
 
+        wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
+     // Delete old screenshots before each test
+        File screenshotFolder = new File("screenshots");
+
+        if (screenshotFolder.exists()) {
+            for (File file : screenshotFolder.listFiles()) {
+                if (file.isFile()) {
+                    file.delete();
+                }
+            }
+        }
+    }
+    @BeforeSuite
+    public void cleanOldScreenshots() {
+
+        File screenshotFolder = new File("screenshots");
+
+        if (screenshotFolder.exists()) {
+            File[] files = screenshotFolder.listFiles();
+
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile() && file.getName().endsWith(".png")) {
+                        file.delete();
+                    }
+                }
+            }
+        }
+    }
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
 
@@ -121,5 +160,7 @@ public class BaseTest {
                 driver.quit();
             }
         }
+        
+        
     }
 }

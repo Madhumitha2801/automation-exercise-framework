@@ -1,5 +1,7 @@
-package com.automationexercise.pages;
 
+package com.automationexercise.pages;
+import com.automationexercise.base.ConfigReader;
+import com.automationexercise.base.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,7 +21,7 @@ public class HomePage {
     }
 
     public void open() {
-        driver.get("https://automationexercise.com/");
+        driver.get(ConfigReader.getProperty("base.url"));
     }
 
     public boolean isHomePageDisplayed() {
