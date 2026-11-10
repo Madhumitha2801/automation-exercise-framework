@@ -17,3 +17,6 @@ screenshots/
 # Logs
 *.log
 test-output/
+
+# Node.js dependencies
+node_modules/
