@@ -1,0 +1,249 @@
+{
+  "info": {
+    "_postman_id": "7c423fb8-c41a-4fea-9c2d-45279ad36f8a",
+    "name": "HerokuApp_API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52585525",
+    "_collection_link": "https://go.postman.co/collection/52585525-7c423fb8-c41a-4fea-9c2d-45279ad36f8a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get_All_Bookings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://restful-booker.herokuapp.com/booking",
+          "protocol": "https",
+          "host": [
+            "restful-booker",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create_Booking",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Pre-request script intentionally left empty.\n// Response validation and bookingId extraction are handled in the post-response (Tests) script."
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let response = pm.response.json();\r\n\r\n// Save generated Booking ID\r\npm.collectionVariables.set(\r\n    \"bookingId\",\r\n    response.bookingid.toString()\r\n);\r\n\r\n// 1. Validate status code\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// 2. Validate booking ID\r\npm.test(\"Booking ID should be generated\", function () {\r\n    pm.expect(response.bookingid).to.be.a(\"number\");\r\n});\r\n\r\n// 3. Validate first name\r\npm.test(\"Verify first name\", function () {\r\n    pm.expect(response.booking.firstname).to.eql(\"Madhu\");\r\n});\r\n\r\n// 4. Validate last name\r\npm.test(\"Verify last name\", function () {\r\n    pm.expect(response.booking.lastname).to.eql(\"Tester\");\r\n});\r\n\r\n// 5. Validate total price\r\npm.test(\"Verify total price\", function () {\r\n    pm.expect(response.booking.totalprice).to.eql(1500);\r\n});\r\n\r\n// 6. Validate deposit paid\r\npm.test(\"Verify deposit paid\", function () {\r\n    pm.expect(response.booking.depositpaid).to.eql(true);\r\n});\r\n\r\n// 7. Validate additional needs\r\npm.test(\"Verify additional needs\", function () {\r\n    pm.expect(response.booking.additionalneeds).to.eql(\"Breakfast\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstname\": \"Madhu\",\r\n    \"lastname\": \"Tester\",\r\n    \"totalprice\": 1500,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2026-12-01\",\r\n        \"checkout\": \"2026-12-05\"\r\n    },\r\n    \"additionalneeds\": \"Breakfast\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://restful-booker.herokuapp.com/booking",
+          "protocol": "https",
+          "host": [
+            "restful-booker",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_created_Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Verify status code\npm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\n// Only run body-dependent tests if the response is successful (200 OK)\nif (pm.response.code === 200) {\n    let response = pm.response.json();\n\n    // 2. Validate first name\n    pm.test(\"Verify first name matches created booking\", function () {\n        pm.expect(response.firstname).to.eql(\"Madhu\");\n    });\n\n    // 3. Validate last name\n    pm.test(\"Verify last name matches created booking\", function () {\n        pm.expect(response.lastname).to.eql(\"Tester\");\n    });\n\n    // 4. Validate total price\n    pm.test(\"Verify total price matches created booking\", function () {\n        pm.expect(response.totalprice).to.eql(1500);\n    });\n\n    // 5. Validate deposit paid\n    pm.test(\"Verify deposit paid status\", function () {\n        pm.expect(response.depositpaid).to.eql(true);\n    });\n} else {\n    console.log(\"Skipping body validation due to non-200 status code: \" + pm.response.code);\n}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://restful-booker.herokuapp.com/booking/{{bookingId}}",
+          "protocol": "https",
+          "host": [
+            "restful-booker",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create_Auth_Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let response = pm.response.json();\r\n\r\n// Save generated Token into collection variables\r\npm.collectionVariables.set(\"authToken\", response.token);\r\n\r\n// Verify status code\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// Verify token exists\r\npm.test(\"Auth Token should be generated\", function () {\r\n    pm.expect(response.token).to.be.a(\"string\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://restful-booker.herokuapp.com/auth",
+          "protocol": "https",
+          "host": [
+            "restful-booker",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "auth"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update_Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Verify status code\npm.test(\"Status code is 200 - Booking updated\", function () {\n    pm.response.to.have.status(200);\n});\n\n// Only run these tests if the response is valid JSON\nif (pm.response.headers.get(\"Content-Type\") && pm.response.headers.get(\"Content-Type\").includes(\"application/json\")) {\n    let response = pm.response.json();\n\n    // 2. Verify totalprice was updated\n    pm.test(\"Total price updated to 2500\", function () {\n        pm.expect(response.totalprice).to.eql(2500);\n    });\n\n    // 3. Verify depositpaid was updated\n    pm.test(\"Deposit paid updated to false\", function () {\n        pm.expect(response.depositpaid).to.eql(false);\n    });\n\n    // 4. Verify additional needs updated\n    pm.test(\"Additional needs updated to Dinner\", function () {\n        pm.expect(response.additionalneeds).to.eql(\"Dinner\");\n    });\n} else {\n    pm.test(\"Response is not JSON\", function () {\n        pm.expect(pm.response.text()).to.not.be.empty;\n    });\n}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "token={{authToken}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstname\": \"Madhu\",\r\n    \"lastname\": \"Tester\",\r\n    \"totalprice\": 2500,\r\n    \"depositpaid\": false,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2026-01-01\",\r\n        \"checkout\": \"2026-01-10\"\r\n    },\r\n    \"additionalneeds\": \"Dinner\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://restful-booker.herokuapp.com/booking/{{bookingId}}",
+          "protocol": "https",
+          "host": [
+            "restful-booker",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete_Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Verify status code\r\npm.test(\"Status code is 201 Created - Record deleted\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\n// 2. Verify response body text\r\npm.test(\"Response body confirms Created/Deleted\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Created\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "token={{authToken}}"
+          }
+        ],
+        "url": {
+          "raw": "https://restful-booker.herokuapp.com/booking/{{bookingId}}",
+          "protocol": "https",
+          "host": [
+            "restful-booker",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "bookingId",
+      "value": ""
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    }
+  ]
+}
