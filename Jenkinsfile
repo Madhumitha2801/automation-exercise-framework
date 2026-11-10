@@ -1,6 +1,5 @@
 
 pipeline {
-
     agent any
 
     tools {
@@ -9,7 +8,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -28,19 +26,24 @@ pipeline {
             }
         }
 
+        stage('Install Newman Reporter') {
+            steps {
+                bat 'npm --version'
+                bat 'npm ci'
+            }
+        }
+
         stage('Run API Tests - Newman') {
             steps {
                 bat '"C:\\Users\\Dharani Madhu\\AppData\\Roaming\\npm\\newman.cmd" --version'
 
-                bat '"C:\\Users\\Dharani Madhu\\AppData\\Roaming\\npm\\newman.cmd" run "postman\\Herokuapp_API_automation.json"'
+                bat '"C:\\Users\\Dharani Madhu\\AppData\\Roaming\\npm\\newman.cmd" run "postman\\Herokuapp_API_automation.json" --reporters cli,allure --reporter-allure-resultsDir "target\\allure-results"'
             }
         }
     }
 
     post {
-
         always {
-
             junit allowEmptyResults: true,
                   testResults: 'target/surefire-reports/*.xml'
 
