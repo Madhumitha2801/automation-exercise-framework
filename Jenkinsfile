@@ -1,4 +1,6 @@
+
 pipeline {
+
     agent any
 
     tools {
@@ -25,10 +27,19 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
+        stage('Run API Tests - Newman') {
+            steps {
+                bat 'newman --version'
+                bat 'newman run "postman\\Herokuapp_API_automation.json"'
+            }
+        }
     }
 
     post {
+
         always {
+
             junit allowEmptyResults: true,
                   testResults: 'target/surefire-reports/*.xml'
 
