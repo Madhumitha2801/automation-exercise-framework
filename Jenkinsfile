@@ -28,12 +28,12 @@ pipeline {
             }
         }
 
-        stage('Run API Tests - Newman') {
-            steps {
-                bat 'newman --version'
-                bat 'newman run "postman\\Herokuapp_API_automation.json"'
-            }
-        }
+       stage('Run API Tests - Newman') {
+    steps {
+        bat '"C:\\Users\\Dharani Madhu\\AppData\\Roaming\\npm\\newman.cmd" --version'
+        bat '"C:\\Users\\Dharani Madhu\\AppData\\Roaming\\npm\\newman.cmd" run "postman\\Herokuapp_API_automation.json"'
+    }
+}
     }
 
     post {
