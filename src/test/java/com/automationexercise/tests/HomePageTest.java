@@ -17,9 +17,11 @@ public class HomePageTest extends BaseTest {
 
         homePage.open();
 
-        Assert.assertTrue(
+       /* Assert.assertTrue(
                 homePage.isHomePageDisplayed(),
                 "Home page logo was not displayed."
         );
+        */
+        Assert.assertTrue(false, "Intentional failure to test Jenkins");
     }
 }
