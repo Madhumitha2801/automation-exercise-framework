@@ -32,3 +32,24 @@ This framework includes:
 | Jenkins | CI/CD pipeline |
 | Allure Reports | Test execution reporting |
 | Git & GitHub | Version control and source code management |
+
+
+## UI Automation Features
+
+The Selenium automation framework covers the following scenarios:
+
+- Search for products.
+- Add products to the shopping cart.
+- Verify cart details.
+- User login functionality.
+- New user signup functionality.
+
+### UI Automation Framework Highlights
+
+- Page Object Model (POM) implementation.
+- Reusable page classes and methods.
+- Explicit waits for synchronization.
+- TestNG annotations for test execution.
+- Browser setup and teardown using BaseTest.
+- Automated test execution using Maven.
+
