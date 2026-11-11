@@ -129,3 +129,22 @@ The report includes:
 - Test steps and execution status.
 
 Allure reports are generated and published through the Jenkins pipeline.
+
+## Prerequisites
+
+Make sure the following tools are installed:
+
+- Java JDK 21
+- Apache Maven
+- Eclipse IDE (or any Java IDE)
+- Google Chrome browser
+- Git
+- Node.js and npm
+- Jenkins
+- Postman
+
+### Required Dependencies
+
+Project dependencies are managed through Maven using `pom.xml`.
+
+Newman is used to execute Postman collections from the command line.
