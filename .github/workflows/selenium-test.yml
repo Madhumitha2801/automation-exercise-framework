@@ -20,6 +20,12 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         
+    - name: Verify Java and Maven
+      run: |
+        java -version
+        javac -version
+        mvn -version
+
     - name: Install Chrome
       run: |
         sudo apt-get update
