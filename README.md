@@ -94,3 +94,24 @@ The collection covers the following scenarios:
 - Data validation using Postman test scripts.
 - Command-line execution using Newman.
 - Integration with the Jenkins pipeline.
+
+## Jenkins CI/CD Pipeline
+
+The project is integrated with Jenkins to execute UI and API automation tests automatically.
+
+### Pipeline Stages
+
+1. Checkout source code from GitHub.
+2. Compile the Java project using Maven.
+3. Execute Selenium UI tests using TestNG.
+4. Install Newman dependencies using npm.
+5. Execute API tests using Newman.
+6. Generate and publish Allure test reports.
+7. Archive test results and reports in Jenkins.
+
+### Pipeline Benefits
+
+- Automated execution of UI and API tests.
+- Centralized test reporting.
+- Easy identification of test failures.
+- Continuous integration using Jenkins.
