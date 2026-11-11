@@ -73,3 +73,24 @@ The Selenium automation framework covers the following scenarios:
 - Browser setup and teardown using BaseTest.
 - Automated test execution using Maven.
 
+## API Automation Features
+
+API testing is performed using Postman and Newman with the Restful Booker API.
+
+The collection covers the following scenarios:
+
+- Get all bookings.
+- Create a new booking.
+- Retrieve the created booking.
+- Generate an authentication token.
+- Update an existing booking.
+- Delete a booking.
+
+### API Testing Highlights
+
+- Request and response validation.
+- Status code verification.
+- JSON response assertions.
+- Data validation using Postman test scripts.
+- Command-line execution using Newman.
+- Integration with the Jenkins pipeline.
