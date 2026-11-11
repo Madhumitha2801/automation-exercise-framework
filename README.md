@@ -1,4 +1,3 @@
-
 # Automation Exercise – UI & API Automation Framework
 
 A beginner-friendly test automation project built using Java, Selenium WebDriver, TestNG, Maven, Postman, Newman, Jenkins, and Allure Reports.
@@ -16,7 +15,6 @@ This framework includes:
 - API test execution using Newman.
 - CI/CD integration using Jenkins.
 - Test reporting using Allure Reports.
-
 
 ## Technology Stack
 
@@ -87,7 +85,7 @@ The project is integrated with Jenkins to execute UI and API automation tests au
 5. Execute API tests using Newman.
 6. Generate and publish Allure test reports.
 7. Archive test results and reports in Jenkins.
- 
+
 ## Allure Reports
 
 Allure Reports provide detailed test execution results for both UI and API automation.
