@@ -115,3 +115,17 @@ The project is integrated with Jenkins to execute UI and API automation tests au
 - Centralized test reporting.
 - Easy identification of test failures.
 - Continuous integration using Jenkins.
+- 
+## Allure Reports
+
+Allure Reports provide detailed test execution results for both UI and API automation.
+
+The report includes:
+
+- Selenium UI test results.
+- Newman API test results.
+- Passed and failed test cases.
+- Test execution details.
+- Test steps and execution status.
+
+Allure reports are generated and published through the Jenkins pipeline.
