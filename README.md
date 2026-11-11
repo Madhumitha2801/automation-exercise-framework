@@ -16,3 +16,19 @@ This framework includes:
 - API test execution using Newman.
 - CI/CD integration using Jenkins.
 - Test reporting using Allure Reports.
+
+
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Java 21 | Programming language |
+| Selenium WebDriver | UI automation |
+| TestNG | Test execution and assertions |
+| Maven | Build and dependency management |
+| Page Object Model | Framework design pattern |
+| Postman | API testing and collection management |
+| Newman | Command-line API test execution |
+| Jenkins | CI/CD pipeline |
+| Allure Reports | Test execution reporting |
+| Git & GitHub | Version control and source code management |
