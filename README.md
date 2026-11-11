@@ -33,27 +33,6 @@ This framework includes:
 | Allure Reports | Test execution reporting |
 | Git & GitHub | Version control and source code management |
 
-
-## UI Automation Features
-
-The Selenium automation framework covers the following scenarios:
-
-- Search for products.
-- Add products to the shopping cart.
-- Verify cart details.
-- User login functionality.
-- New user signup functionality.
-
-### UI Automation Framework Highlights
-
-- Page Object Model (POM) implementation.
-- Reusable page classes and methods.
-- Explicit waits for synchronization.
-- TestNG annotations for test execution.
-- Browser setup and teardown using BaseTest.
-- Automated test execution using Maven.
-
-
 ## UI Automation Features
 
 The Selenium automation framework covers the following scenarios:
@@ -108,14 +87,7 @@ The project is integrated with Jenkins to execute UI and API automation tests au
 5. Execute API tests using Newman.
 6. Generate and publish Allure test reports.
 7. Archive test results and reports in Jenkins.
-
-### Pipeline Benefits
-
-- Automated execution of UI and API tests.
-- Centralized test reporting.
-- Easy identification of test failures.
-- Continuous integration using Jenkins.
-- 
+ 
 ## Allure Reports
 
 Allure Reports provide detailed test execution results for both UI and API automation.
@@ -148,3 +120,11 @@ Make sure the following tools are installed:
 Project dependencies are managed through Maven using `pom.xml`.
 
 Newman is used to execute Postman collections from the command line.
+
+## How to Run the Project
+
+### Run Selenium UI Tests
+
+```bash
+mvn clean test
+```
