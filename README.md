@@ -53,3 +53,23 @@ The Selenium automation framework covers the following scenarios:
 - Browser setup and teardown using BaseTest.
 - Automated test execution using Maven.
 
+
+## UI Automation Features
+
+The Selenium automation framework covers the following scenarios:
+
+- Search for products.
+- Add products to the shopping cart.
+- Verify cart details.
+- User login functionality.
+- New user signup functionality.
+
+### Framework Highlights
+
+- Page Object Model (POM) implementation.
+- Reusable page classes and methods.
+- Explicit waits for synchronization.
+- TestNG annotations for test execution.
+- Browser setup and teardown using BaseTest.
+- Automated test execution using Maven.
+
